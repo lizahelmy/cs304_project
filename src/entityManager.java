@@ -1,0 +1,34 @@
+import javax.media.opengl.GL;
+import java.util.ArrayList;
+
+public class entityManager {
+    static ArrayList<Entity> entities  = new ArrayList<>() ;
+    static void  addEntity (Entity e) {
+        entities.add(e);
+    }
+    public static void  update () {
+        // Save previous positions before updating
+        for (Entity e: entities) {
+            e.savePreviousPosition();
+        }
+        // Now update all entities
+        for (Entity  e: entities)
+        {
+            e.update();
+        }
+    }
+    public static void render (GL gl) {
+        for (Entity  e: entities)
+        {
+            e.render(gl);
+        }
+    }
+    public static void  entityDestroy(Entity e){
+        if (e != null){
+            e.destroy();
+        }
+    }
+    public static void reinitializeEntities(){
+
+    }
+}
